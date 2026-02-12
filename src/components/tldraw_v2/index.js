@@ -85,8 +85,8 @@ const SlideData = (tldrawAPI) => {
         shape,
       } = tldrawData[i];
 
-      shape.parentId = tldrawAPI?.getCurrentPageId();
-      shapes[shape.id] = shape;
+      const clonedShape = { ...shape, parentId: tldrawAPI?.getCurrentPageId() };
+      shapes[clonedShape.id] = clonedShape;
     }
   }
 
