@@ -13,6 +13,7 @@ import {
   useShouldShowScreenShare,
 } from 'components/utils/hooks';
 import { ID } from 'utils/constants';
+import ZoomWrapper from 'components/utils/zoom-wrapper';
 import storage from 'utils/data/storage';
 import './index.scss';
 
@@ -68,29 +69,31 @@ const Presentation = () => {
       className={cx('presentation-wrapper', { inactive: (currentContent !== ID.PRESENTATION && shouldShowScreenshare) })}
       id={ID.PRESENTATION}
     >
-      <div className={cx('presentation', { logo: !started })}>
-        <svg
-          viewBox={buildViewBoxAttr(viewBox)}
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-        >
-          <defs>
-            <clipPath id="viewBox">
-              <rect
-                height={viewBox.height}
-                x={viewBox.x}
-                width={viewBox.width}
-                y={viewBox.y}
-              />
-            </clipPath>
-          </defs>
-          <g clipPath="url(#viewBox)">
-            <Slide />
-            <Canvas />
-            <Cursor viewBox={viewBox} />
-          </g>
-        </svg>
-      </div>
+      <ZoomWrapper>
+        <div className={cx('presentation', { logo: !started })}>
+          <svg
+            viewBox={buildViewBoxAttr(viewBox)}
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          >
+            <defs>
+              <clipPath id="viewBox">
+                <rect
+                  height={viewBox.height}
+                  x={viewBox.x}
+                  width={viewBox.width}
+                  y={viewBox.y}
+                />
+              </clipPath>
+            </defs>
+            <g clipPath="url(#viewBox)">
+              <Slide />
+              <Canvas />
+              <Cursor viewBox={viewBox} />
+            </g>
+          </svg>
+        </div>
+      </ZoomWrapper>
     </div>
   );
 };

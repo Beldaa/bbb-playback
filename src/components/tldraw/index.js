@@ -24,6 +24,7 @@ import { ID } from 'utils/constants';
 import storage from 'utils/data/storage';
 import { isEmpty } from 'utils/data/validators';
 import { buildFileURL } from 'utils/data';
+import ZoomWrapper from 'components/utils/zoom-wrapper';
 import './index.scss';
 import { getTldrawData, getViewBox, getTldrawBbbVersion } from 'utils/tldraw';
 
@@ -161,14 +162,15 @@ const TldrawPresentation = ({ size }) => {
       className={cx('presentation-wrapper', { inactive: (currentContent !== ID.PRESENTATION && shouldShowScreenShare) })}
       id={ID.PRESENTATION}
     >
-      {!started
-        ? <div className={cx('presentation', 'logo')} />
-        : <div className={'presentation'}
-          style={{
-            position: 'absolute',
-            width: svgWidth < 0 ? 0 : svgWidth,
-            height: svgHeight < 0 ? 0 : svgHeight,
-          }}>
+      <ZoomWrapper>
+        {!started
+          ? <div className={cx('presentation', 'logo')} />
+          : <div className={'presentation'}
+            style={{
+              position: 'absolute',
+              width: svgWidth < 0 ? 0 : svgWidth,
+              height: svgHeight < 0 ? 0 : svgHeight,
+            }}>
           <Cursor tldrawAPI={tldrawAPI} size={size} />
           <Tldraw
             disableAssets={true}
@@ -214,6 +216,7 @@ const TldrawPresentation = ({ size }) => {
           />
         </div>
       }
+      </ZoomWrapper>
     </div>
   );
 };

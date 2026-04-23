@@ -1,0 +1,41 @@
+.zoom-wrapper {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  width: 100%;
+}
+
+.zoom-wrapper-inner {
+  height: 100%;
+  transform-origin: 0 0;
+  will-change: transform;
+  width: 100%;
+}
+
+.zoom-wrapper-controls {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
+  padding: 6px 12px;
+  pointer-events: all;
+  position: absolute;
+  right: 12px;
+}
+
+.zoom-wrapper-label {
+  color: #fff;
+  font-size: 12px;
+  min-width: 36px;
+  text-align: right;
+  user-select: none;
+}
+
+.zoom-wrapper-slider {
+  accent-color: #fff;
+  cursor: pointer;
+  width: 100px;
+}

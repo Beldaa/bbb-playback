@@ -15,6 +15,7 @@ import {
 } from 'components/utils/hooks';
 import { ID } from 'utils/constants';
 import storage from 'utils/data/storage';
+import ZoomWrapper from 'components/utils/zoom-wrapper';
 import './index.scss';
 import {
   getTldrawData, getViewBox, createTldrawImageAsset,
@@ -162,7 +163,9 @@ const TldrawPresentationV2 = ({ size }) => {
       aria-label={intl.formatMessage(intlMessages.aria)}
       className={cx('presentation-wrapper', { inactive: (currentContent !== ID.PRESENTATION && shouldShowScreenshare) })}
       id={ID.PRESENTATION}
-    >{!started
+    >
+      <ZoomWrapper>
+      {!started
       ? <div className={cx('presentation', 'logo')} />
       : <div className={'presentation'}
         style={{
@@ -204,6 +207,7 @@ const TldrawPresentationV2 = ({ size }) => {
         />
       </div>
       }
+      </ZoomWrapper>
     </div>
   );
 };
